@@ -4,8 +4,9 @@ module.exports = ({ run }) =>
         const driver = await get("driver");
 
         actions.add("create", {
+            requestType: "write",
             async handler() {
-                driver.database.create(this.model, this.data);
+                this.data = await driver.database.create(this.model, this.data);
 
                 return this.data;
             },

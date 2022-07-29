@@ -9,7 +9,8 @@ module.exports = async (driver, schemaBuilder) => {
         require("./core"),
         require("./globalContext"),
         require("./actions"),
-        require("./requestExecutors")
+        require("./requestExecutors"),
+        require("./inputProcessor")
     );
 
     return await container.get("router");

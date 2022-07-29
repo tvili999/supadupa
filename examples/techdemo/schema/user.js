@@ -23,6 +23,7 @@ model("User", () => {
 
     set({
         permissions: {
+            _: "w",
             my: "rw",
             admin: "rw",
         },
@@ -31,11 +32,15 @@ model("User", () => {
     field("id", "int", {
         primaryKey: true,
         autoIncrement: true,
+        permissions: { me: "r" },
+        //        postProcessFilter: (x) => x > 0,
     });
-    field("name", "string", { unique: true });
+    field("username", "string", { unique: true });
     field("password", "string", {
-        permissions: { my: "w" },
-        writeHook: (x) => x, // hash it
+        permissions: { _: "w", my: "w" },
+        inputPreHook: (x) => x.toUpperCase(), // hash it
     });
-    field("email", "string");
+    field("email", "string", {
+        preProcessFilter: (x) => x.includes("@"),
+    });
 });

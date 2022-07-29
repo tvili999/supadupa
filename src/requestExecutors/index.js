@@ -1,7 +1,7 @@
 module.exports = ({ configure }) =>
     configure(
         require("./init"),
-        require("./preValidate"),
+        require("./preprocess"),
         require("./runAction"),
         require("./sendResponse"),
         require("./checkActionPermissions")

@@ -12,4 +12,4 @@ const schema = require("./schema");
     app.use("/api/ez", router);
 
     app.listen(4000);
-})();
+})().catch(console.error);
